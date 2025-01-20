@@ -1,6 +1,3 @@
-# def criar_tabuleiro():
-#     tabuleiro = [['.' for _ in range(8)] for _ in range(8)]
-#     return tabuleiro
 
 def criar_tabuleiro():
     tabuleiro = [['.' for _ in range(8)] for _ in range(8)]
