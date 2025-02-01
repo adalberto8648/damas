@@ -45,19 +45,22 @@ def mostrar_tabuleiro(canvas, tabuleiro):
                 canvas.create_oval(x1 + 10, y1 + 10, x2 - 10, y2 - 10, fill='green')
 
 #criar a janela do jogo
+#tem que ter o clique, porque quando for clicar ele vai dar erro
 def criar_janela(clique):
     janela = tk.Tk()
     janela.title("Jogo de Damas")
-
     canvas = tk.Canvas(janela, width=480, height=480)
     canvas.pack()
-
+    #processa usando o canvas com o return (tabuleiro) do criar_tabuleiro
     tabuleiro = criar_tabuleiro()
     mostrar_tabuleiro(canvas, tabuleiro)
-
+    #bind é um evento de clique do clique <Button-1>
+    #lambda é uma função anônima que passa pro clique, acessando canvas e tabuleiro
     canvas.bind("<Button-1>", lambda event: clique(event, canvas, tabuleiro))
-
     janela.mainloop()
 
-
-
+#c_clique tem que ser colocado aqui dentro pra ser importado só quando for executado
+#quando chamar o a_tabuleiro em outo arquivo ele não vai ser executado
+if __name__ == "__main__":
+    from c_clique import clique
+    criar_janela(clique)
