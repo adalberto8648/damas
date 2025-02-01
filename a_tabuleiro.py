@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageTk
 
 #criando tabuleiro
 def criar_tabuleiro():
@@ -22,6 +23,7 @@ def criar_tabuleiro():
 def mostrar_tabuleiro(canvas, tabuleiro):
     #tamanho de cada casa pixels
     tamanho_casa = 60
+    
     #loop percorre as casa
     for linha in range(8):
         for coluna in range(8):
@@ -36,7 +38,7 @@ def mostrar_tabuleiro(canvas, tabuleiro):
                 cor = 'white'
             else:
                 cor = 'black'
-            #canvas criando os quadrados do tabuleiro que começa com white
+            #canvas criando os quadrados do tabuleiro começa com preto
             canvas.create_rectangle(x1, y1, x2, y2, fill=cor, outline='black')
             #se tiver peça na casa, desenha um círculo distanciando das bordas
             if tabuleiro[linha][coluna] == 'w':
@@ -54,8 +56,8 @@ def criar_janela(clique):
     #processa usando o canvas com o return (tabuleiro) do criar_tabuleiro
     tabuleiro = criar_tabuleiro()
     mostrar_tabuleiro(canvas, tabuleiro)
-    #bind é um evento de clique do clique <Button-1>
-    #lambda é uma função anônima que passa pro clique, acessando canvas e tabuleiro
+    #bind é um evento de clique do <Button-1> esquerdo do mouse
+    #lambda é uma função que passa pro clique, acessando canvas e tabuleiro
     canvas.bind("<Button-1>", lambda event: clique(event, canvas, tabuleiro))
     janela.mainloop()
 
