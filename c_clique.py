@@ -8,7 +8,7 @@ def clique(event, canvas, tabuleiro):
     global peca_selecionada, turno  # Tornar as variáveis globais
     tamanho_casa = 60
     coluna = event.x // tamanho_casa
-    linha = 7 - (event.y // tamanho_casa)
+    linha = event.y // tamanho_casa
 
     print(f"Click detectado na posição: ({linha}, {coluna})")
 

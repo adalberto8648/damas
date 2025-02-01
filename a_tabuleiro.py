@@ -18,8 +18,7 @@ def criar_tabuleiro():
                 tabuleiro[linha][coluna] = 'w'
     return tabuleiro
 
-#mostrando o tabuleiro
-#canvas para desenhar o tabuleiro que do return do criar_tabuleiro
+#formatando o tabuleiro com canvas do return do criar_tabuleiro
 def mostrar_tabuleiro(canvas, tabuleiro):
     #tamanho de cada casa pixels
     tamanho_casa = 60
@@ -28,24 +27,22 @@ def mostrar_tabuleiro(canvas, tabuleiro):
         for coluna in range(8):
             #1 canto superior esquerdo do quadrado
             x1 = coluna * tamanho_casa
-            #inversão pra exibição do formato correto
-            y1 = (7 - linha) * tamanho_casa
+            y1 = linha * tamanho_casa
             #2 canto inferior direito do quadrado
             x2 = x1 + tamanho_casa
             y2 = y1 + tamanho_casa
-            #onde o cálculor for resto 0 fica branca, para criar o xadrez
+            #resto 0 fica branca ou black, para criar o xadrez
             if (linha + coluna) % 2 == 0:
                 cor = 'white'
             else:
                 cor = 'black'
-            #canvas criando os quadrados do tabuleiro
-            canvas.create_rectangle(x1, y1, x2, y2, fill=cor, outline='white')
-            #verifica se há uma peça na casa
+            #canvas criando os quadrados do tabuleiro que começa com white
+            canvas.create_rectangle(x1, y1, x2, y2, fill=cor, outline='black')
+            #se tiver peça na casa, desenha um círculo distanciando das bordas
             if tabuleiro[linha][coluna] == 'w':
-                #desenha um círculo dentro da casa
-                canvas.create_oval(x1 + 10, y1 + 10, x2 - 10, y2 - 10, fill='green')
-            elif tabuleiro[linha][coluna] == 'g':
                 canvas.create_oval(x1 + 10, y1 + 10, x2 - 10, y2 - 10, fill='white')
+            elif tabuleiro[linha][coluna] == 'g':
+                canvas.create_oval(x1 + 10, y1 + 10, x2 - 10, y2 - 10, fill='green')
 
 #criar a janela do jogo
 def criar_janela(clique):
